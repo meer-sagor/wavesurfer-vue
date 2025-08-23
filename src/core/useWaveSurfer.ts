@@ -1,8 +1,8 @@
 import type { Ref } from 'vue'
 import type WaveSurfer from 'wavesurfer.js'
 import type { UseWaveSurfer, WaveSurferIns } from '../types'
-import { useWaveSurferInstance } from '../composables/useWaveSurferInstance'
-import { useWaveSurferState } from '../composables/useWaveSurferState'
+import { useWaveSurferInstance } from './useWaveSurferInstance'
+import { useWaveSurferState } from './useWaveSurferState'
 
 export const useWaveSurfer = ({containerRef, options}:WaveSurferIns): UseWaveSurfer =>{
   const {waveSurfer} = useWaveSurferInstance({containerRef, options})
@@ -15,4 +15,3 @@ export const useWaveSurfer = ({containerRef, options}:WaveSurferIns): UseWaveSur
     currentTime
   }
 }
-

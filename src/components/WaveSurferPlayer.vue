@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { getCurrentInstance, onMounted, ref } from 'vue'
 import type { PartialWaveSurferOptions } from '../types'
-import { useWaveSurfer } from '../composables/useWaveSurfer'
+import { useWaveSurfer } from '../core/useWaveSurfer'
 import { waveServerEventsEmitter } from '../eventsEmitter'
 
 const props = defineProps<{
@@ -15,7 +15,7 @@ const instance = getCurrentInstance();
 onMounted(() => {
   // Iterate through the manually defined eventsEmitter and dynamically emit them
   waveServerEventsEmitter.forEach((eventName) => {
-    waveSurfer.value?.on(eventName, (...args) => {
+    waveSurfer.value?.on(eventName, (...args: any[]) => {
       instance?.emit(eventName, ...args)
     })
   });
