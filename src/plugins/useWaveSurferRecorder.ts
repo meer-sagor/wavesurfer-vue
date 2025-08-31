@@ -1,6 +1,6 @@
 import {computed, onMounted, ref} from "vue";
 import RecordPlugin from "wavesurfer.js/dist/plugins/record.js"
-import {useWaveSurferInstance} from "./useWaveSurferInstance";
+import {useWaveSurferInstance} from "../core/useWaveSurferInstance";
 import type { UseWaveSurferRecorder } from '../types'
 
 

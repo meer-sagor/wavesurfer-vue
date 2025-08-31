@@ -1,8 +1,8 @@
 {
   "author": "Meer Sagor",
   "name": "@meersagor/wavesurfer-vue",
-  "version": "1.0.0",
-  "description": "Vue3 component for wavesurfer.js",
+  "version": "2.0.0",
+  "description": "Vue 3 composables and components for WaveSurfer.js with modular plugin architecture",
   "private": false,
   "type": "module",
   "license": "MIT",
@@ -24,6 +24,16 @@
       "types": "./dist/src/index.d.ts",
       "import": "./dist/@meersagor-wavesurfer-vue.js",
       "require": "./dist/@meersagor-wavesurfer-vue.cjs"
+    },
+    "./core": {
+      "types": "./dist/src/core/index.d.ts",
+      "import": "./dist/@meersagor-wavesurfer-vue.js",
+      "require": "./dist/@meersagor-wavesurfer-vue.cjs"
+    },
+    "./plugins": {
+      "types": "./dist/src/plugins/index.d.ts",
+      "import": "./dist/@meersagor-wavesurfer-vue.js",
+      "require": "./dist/@meersagor-wavesurfer-vue.cjs"
     }
   },
   "types": "./dist/src/index.d.ts",
@@ -34,23 +44,31 @@
     "wavesurfer",
     "vue",
     "vue3",
+    "composable",
+    "plugins",
+    "modular",
     "audio",
     "waveform",
-    "player"
+    "player",
+    "recorder",
+    "timeline",
+    "zoom",
+    "minimap"
   ],
   "scripts": {
     "build": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "link-pack": "(yarn --global unlink '@meersagor/wavesurfer-vue' || true) && yarn --global link"
+    "link-pack": "(yarn --global unlink '@meersagor/wavesurfer-vue' || true) && yarn --global link",
+    "dev": "vite",
+    "preview": "vite preview"
   },
   "dependencies": {
     "vue": "^3.5.12",
-    "wavesurfer.js": "^7.8.8"
+    "wavesurfer.js": "^7.10.1"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.9",
     "@rushstack/eslint-patch": "^1.10.4",
     "@tsconfig/node18": "^18.2.4",
     "@types/node": "^22.9.0",

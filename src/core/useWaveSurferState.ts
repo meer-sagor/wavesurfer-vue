@@ -51,12 +51,6 @@ export const useWaveSurferState = (wavesurfer: Ref<WaveSurfer | null>) => {
   onUnmounted(() => {
     if (wavesurfer.value) {
       wavesurfer.value.unAll()
-      // wavesurfer.value.un('load', handleLoad);
-      // wavesurfer.value.un('ready', handleReady);
-      // wavesurfer.value.un('play', handlePlay);
-      // wavesurfer.value.un('pause', handlePause);
-      // wavesurfer.value.un('timeupdate', handleTimeUpdate);
-      // wavesurfer.value.un('destroy', handleDestroy);
     }
   })
   return {
