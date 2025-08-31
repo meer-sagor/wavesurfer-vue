@@ -1,10 +1,101 @@
 # @meersagor/wavesurfer-vue
 
-## 3.0.0
+## 2.0.0
 
-### Major Changes
+### 🚀 Major Release - Modular Plugin Architecture
 
-- feaf628: new version
+This is a major release that completely restructures the package to provide a modular, tree-shaking friendly architecture with individual plugin support.
+
+#### ✨ New Features
+
+- **🧩 Modular Plugin Architecture**: Complete rewrite to support individual plugin imports
+- **📦 Tree-shaking Support**: Import only the plugins you need for smaller bundle sizes
+- **🔄 Multiple Usage Patterns**: 
+  - Core + Individual Plugins (recommended)
+  - Standalone Plugins (creates own WaveSurfer instances)
+  - Core Functionality Only
+  - Legacy Component Usage (backward compatible)
+- **🎯 Individual Plugin Composables**: Each plugin now has its own composable
+- **⚡ Vue 3 Composition API**: Modern Vue 3 patterns throughout
+
+#### 🧩 New Plugin Composables
+
+- `useWaveSurferTimeline` - Timeline display functionality
+- `useWaveSurferZoom` - Zoom functionality with methods (`zoomIn`, `zoomOut`, `setZoom`)
+- `useWaveSurferMinimap` - Minimap overview
+- `useWaveSurferHover` - Hover effects
+- `useWaveSurferEnvelope` - Audio envelope visualization
+- `useWaveSurferSpectrogram` - Frequency spectrum visualization
+- `useWaveSurferRegions` - Audio region management
+- `useWaveSurferRecorder` - Audio recording functionality (enhanced)
+
+#### 🔧 Enhanced Features
+
+- **TypeScript Support**: Full type safety for all plugin options
+- **Plugin Options**: Each plugin accepts its own configuration options
+- **Standalone Versions**: Each plugin has a standalone version that creates its own WaveSurfer instance
+- **Better Performance**: Smaller bundle sizes through tree-shaking
+- **Flexible Architecture**: Mix and match plugins as needed
+
+#### 📚 New Import Patterns
+
+```typescript
+// Pattern 1: Core + Individual Plugins (Recommended)
+import { 
+  useWaveSurfer,
+  useWaveSurferTimeline,
+  useWaveSurferZoom,
+  useWaveSurferMinimap
+} from '@meersagor/wavesurfer-vue'
+
+// Pattern 2: Standalone Plugins
+import { 
+  useWaveSurferTimelineStandalone,
+  useWaveSurferZoomStandalone
+} from '@meersagor/wavesurfer-vue'
+
+// Pattern 3: Core Functionality Only
+import { useWaveSurfer } from '@meersagor/wavesurfer-vue'
+
+// Pattern 4: Legacy Component (still supported)
+import { WaveSurferPlayer } from '@meersagor/wavesurfer-vue'
+```
+
+#### 🎙️ Enhanced Recorder Plugin
+
+- **Improved API**: Better return types and methods
+- **Continuous Waveform**: Support for continuous waveform during recording
+- **Pause/Resume**: Enhanced pause and resume functionality
+- **Blob Return**: Returns audio blob after recording
+
+#### 🔄 Backward Compatibility
+
+- Legacy `WaveSurferPlayer` component still works
+- Existing `useWaveSurfer` composable maintains API compatibility
+- Gradual migration path available
+
+#### 📖 Documentation
+
+- **Comprehensive README**: Multiple usage patterns and examples
+- **Plugin-specific Documentation**: Detailed plugin options and usage
+- **TypeScript Examples**: Full type-safe examples
+- **Migration Guide**: Help for upgrading from v1.0.0
+
+#### 🏗️ Architecture Improvements
+
+- **Core Functionality**: Separated from plugins for better modularity
+- **Plugin System**: Individual plugins with standalone versions
+- **State Management**: Improved state management with Vue 3 Composition API
+- **Event Handling**: Better event handling and reactivity
+
+#### 🎯 Benefits
+
+1. **Tree-shaking**: Only import the plugins you need
+2. **Better Performance**: Smaller bundle sizes
+3. **Flexibility**: Mix and match plugins as needed
+4. **Type Safety**: Full TypeScript support for all plugin options
+5. **Vue 3 Native**: Built with Vue 3 Composition API
+6. **Maintainable**: Modular architecture for easier maintenance
 
 ## 1.0.0
 

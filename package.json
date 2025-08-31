@@ -1,7 +1,7 @@
 {
   "author": "Meer Sagor",
   "name": "@meersagor/wavesurfer-vue",
-  "version": "3.0.0",
+  "version": "2.0.0",
   "description": "Vue 3 composables and components for WaveSurfer.js with modular plugin architecture",
   "private": false,
   "type": "module",
@@ -62,22 +62,13 @@
     "format": "prettier --write src/",
     "link-pack": "(yarn --global unlink '@meersagor/wavesurfer-vue' || true) && yarn --global link",
     "dev": "vite",
-    "preview": "vite preview",
-    "changeset": "changeset",
-    "version": "changeset version",
-    "release": "changeset publish",
-    "deploy": "./deploy.sh",
-    "release:create": "./release.sh create",
-    "release:version": "./release.sh version",
-    "release:status": "./release.sh status",
-    "release:full": "./release.sh full"
+    "preview": "vite preview"
   },
   "dependencies": {
     "vue": "^3.5.12",
     "wavesurfer.js": "^7.10.1"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.9",
     "@rushstack/eslint-patch": "^1.10.4",
     "@tsconfig/node18": "^18.2.4",
     "@types/node": "^22.9.0",
