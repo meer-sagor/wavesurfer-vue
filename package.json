@@ -1,7 +1,7 @@
 {
   "author": "Meer Sagor",
   "name": "@meersagor/wavesurfer-vue",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Vue 3 composables and components for WaveSurfer.js with modular plugin architecture",
   "private": false,
   "type": "module",
@@ -66,7 +66,11 @@
     "changeset": "changeset",
     "version": "changeset version",
     "release": "changeset publish",
-    "deploy": "./deploy.sh"
+    "deploy": "./deploy.sh",
+    "release:create": "./release.sh create",
+    "release:version": "./release.sh version",
+    "release:status": "./release.sh status",
+    "release:full": "./release.sh full"
   },
   "dependencies": {
     "vue": "^3.5.12",

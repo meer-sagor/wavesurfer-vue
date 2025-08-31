@@ -1,7 +1,13 @@
 # @meersagor/wavesurfer-vue
 
+## 3.0.0
+
+### Major Changes
+
+- feaf628: new version
 
 ## 1.0.0
+
 - update package home page url
 
 ## 0.1.2
