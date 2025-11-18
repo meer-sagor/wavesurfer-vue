@@ -6,6 +6,7 @@ export { useWaveSurferEnvelope } from './useWaveSurferEnvelope'
 export { useWaveSurferSpectrogram } from './useWaveSurferSpectrogram'
 export { useWaveSurferHover } from './useWaveSurferHover'
 export { useWaveSurferRegions } from './useWaveSurferRegions'
+export { useWaveSurferRecorder } from './useWaveSurferRecorder'
 
 // Standalone plugin composables (creates own WaveSurfer instance)
 export { useWaveSurferTimelineStandalone } from './useWaveSurferTimeline'
@@ -15,6 +16,7 @@ export { useWaveSurferEnvelopeStandalone } from './useWaveSurferEnvelope'
 export { useWaveSurferSpectrogramStandalone } from './useWaveSurferSpectrogram'
 export { useWaveSurferHoverStandalone } from './useWaveSurferHover'
 export { useWaveSurferRegionsStandalone } from './useWaveSurferRegions'
+export { useWaveSurferRecorderStandalone } from './useWaveSurferRecorder'
 
 // Plugin types
 export type { TimelinePluginOptions } from 'wavesurfer.js/dist/plugins/timeline'
@@ -23,3 +25,4 @@ export type { MinimapPluginOptions } from 'wavesurfer.js/dist/plugins/minimap'
 export type { EnvelopePluginOptions } from 'wavesurfer.js/dist/plugins/envelope'
 export type { SpectrogramPluginOptions } from 'wavesurfer.js/dist/plugins/spectrogram'
 export type { HoverPluginOptions } from 'wavesurfer.js/dist/plugins/hover'
+export type { RecordPluginOptions } from 'wavesurfer.js/dist/plugins/record'
