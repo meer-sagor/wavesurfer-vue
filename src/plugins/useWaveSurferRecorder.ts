@@ -1,14 +1,24 @@
 import {computed, onMounted, ref} from "vue";
 import RecordPlugin from "wavesurfer.js/dist/plugins/record.js"
-import {useWaveSurferInstance} from "../core/useWaveSurferInstance";
-import type { UseWaveSurferRecorder } from '../types'
+import type { Ref } from "vue";
+import type WaveSurfer from "wavesurfer.js";
+import type { RecordPluginOptions } from "wavesurfer.js/dist/plugins/record";
+import { useWaveSurferPlugin, useWaveSurferPluginStandalone } from '../core/useWaveSurferPlugin'
 
+export interface UseWaveSurferRecorderOptions {
+  waveSurfer: Ref<WaveSurfer | null>
+  recordPluginOptions?: RecordPluginOptions
+}
 
-export const useWaveSurferRecorder = ({ containerRef, options, recordPluginOptions }: UseWaveSurferRecorder) => {
-    const { waveSurfer } = useWaveSurferInstance({ containerRef, options })
-    const waveSurferRecorder = ref<RecordPlugin | null>(null)
+export interface UseWaveSurferRecorderStandaloneOptions {
+  containerRef: Ref<HTMLElement | null>
+  options: any
+  recordPluginOptions?: RecordPluginOptions
+}
+
+// Shared recording logic
+const createRecordingLogic = (waveSurferRecorder: Ref<any>) => {
     const recordingTime = ref<number>(0)
-
     const isRecording = ref<boolean>(false)
     const isPaused = ref<boolean>(false)
 
@@ -26,7 +36,7 @@ export const useWaveSurferRecorder = ({ containerRef, options, recordPluginOptio
 
     const recordProcessStart = () => {
         if (waveSurferRecorder.value) {
-            waveSurferRecorder.value?.on("record-progress", (time) => {
+            waveSurferRecorder.value?.on("record-progress", (time: number) => {
                 recordingTime.value = time
             })
         }
@@ -71,18 +81,7 @@ export const useWaveSurferRecorder = ({ containerRef, options, recordPluginOptio
         waveSurferRecorder.value?.pauseRecording()
     }
 
-    onMounted(() => {
-        const recordIns = waveSurfer.value?.registerPlugin(RecordPlugin.create({
-            renderRecordedAudio: false,
-            ...recordPluginOptions
-        }))
-        if (recordIns) {
-            waveSurferRecorder.value = recordIns
-        }
-    })
     return {
-        waveSurfer,
-        waveSurferRecorder,
         currentTime,
         startRecording,
         stopRecording,
@@ -90,5 +89,59 @@ export const useWaveSurferRecorder = ({ containerRef, options, recordPluginOptio
         isRecording,
         isPaused,
         isPauseResume,
+    }
+}
+
+// Plugin with existing WaveSurfer instance
+export const useWaveSurferRecorder = ({ 
+    waveSurfer, 
+    recordPluginOptions = {} 
+}: UseWaveSurferRecorderOptions) => {
+    const { pluginInstance: waveSurferRecorder, createPlugin } = useWaveSurferPlugin<RecordPlugin>(
+        RecordPlugin,
+        {
+            renderRecordedAudio: false,
+            ...recordPluginOptions
+        }
+    )
+
+    const recordingLogic = createRecordingLogic(waveSurferRecorder)
+
+    onMounted(() => {
+        if (waveSurfer.value) {
+            createPlugin(waveSurfer.value)
+        }
+    })
+
+    return {
+        waveSurferRecorder,
+        ...recordingLogic,
+    }
+}
+
+// Standalone version that creates its own WaveSurfer instance
+export const useWaveSurferRecorderStandalone = ({ 
+    containerRef, 
+    options, 
+    recordPluginOptions = {} 
+}: UseWaveSurferRecorderStandaloneOptions) => {
+    const { waveSurfer, pluginInstance: waveSurferRecorder } = useWaveSurferPluginStandalone<RecordPlugin>(
+        RecordPlugin,
+        { 
+            containerRef, 
+            options, 
+            pluginOptions: {
+                renderRecordedAudio: false,
+                ...recordPluginOptions
+            }
+        }
+    )
+
+    const recordingLogic = createRecordingLogic(waveSurferRecorder)
+
+    return {
+        waveSurfer,
+        waveSurferRecorder,
+        ...recordingLogic,
     }
 }
