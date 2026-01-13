@@ -20,7 +20,11 @@ export default defineConfig({
       formats: ['es', 'cjs']
     },
     rollupOptions: {
-      external: ['vue', 'wavesurfer.js'],
+      external: [
+        'vue',
+        'wavesurfer.js',
+        /^wavesurfer\.js\/.*/
+      ],
       input: {
         main: resolve(__dirname, 'src/index.ts')
       },

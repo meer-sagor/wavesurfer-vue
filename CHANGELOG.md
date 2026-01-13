@@ -1,5 +1,26 @@
 # @meersagor/wavesurfer-vue
 
+## 2.0.2
+
+### 🐛 Bug Fixes
+
+- **Fixed Nuxt 3 / SSR Compatibility**: Resolved the `worker_threads` warning that appeared when using the package with Nuxt 3 (SSR). The issue was caused by wavesurfer.js plugins (especially spectrogram) being bundled instead of externalized, which tried to import Node.js-specific modules in the browser.
+
+#### What was fixed:
+- Updated Vite build configuration to properly externalize all wavesurfer.js imports including plugins
+- Added regex pattern `/^wavesurfer\.js\/.*/` to external dependencies
+- Reduced bundle size from ~144KB to ~8.7KB (94% reduction)
+- Eliminated Node.js module warnings in browser/SSR environments
+
+#### Impact:
+This fix resolves the browser compatibility warning in Nuxt 3 and other SSR frameworks:
+```
+Module "worker_threads" has been externalized for browser compatibility.
+Cannot access "worker_threads.Worker" in client code.
+```
+
+The package now properly treats wavesurfer.js and all its plugins as peer dependencies, ensuring they are not bundled and causing browser compatibility issues.
+
 ## 2.0.1
 
 ### 🐛 Bug Fixes
