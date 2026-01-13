@@ -1,5 +1,24 @@
 # @meersagor/wavesurfer-vue
 
+## 2.0.1
+
+### 🐛 Bug Fixes
+
+- **Fixed Missing Recorder Exports**: Resolved the critical issue where `useWaveSurferRecorder` and `useWaveSurferRecorderStandalone` could not be imported from the package despite being present in the codebase. The exports are now properly included in the build output.
+- **Added Missing Type Export**: Added `RecordPluginOptions` type export for better TypeScript support with the recorder plugin.
+
+#### What was fixed:
+- `export { useWaveSurferRecorder }` - Now properly exported from `@meersagor/wavesurfer-vue/plugins`
+- `export { useWaveSurferRecorderStandalone }` - Now properly exported from `@meersagor/wavesurfer-vue/plugins`
+- `export type { RecordPluginOptions }` - Type definitions now available for recorder options
+
+#### Impact:
+This fix resolves the issue reported 2 months ago where users could not import the recorder composables despite the documentation showing they were available. Users can now successfully use:
+
+```typescript
+import { useWaveSurferRecorder, useWaveSurferRecorderStandalone } from '@meersagor/wavesurfer-vue/plugins'
+```
+
 ## 2.0.0
 
 ### 🚀 Major Release - Modular Plugin Architecture
