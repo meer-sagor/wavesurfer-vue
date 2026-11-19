@@ -1,5 +1,23 @@
 # @meersagor/wavesurfer-vue
 
+## 2.0.3
+
+### 🐛 Bug Fixes
+
+- **Fixed TypeScript resolution under `moduleResolution: "node16"` / `"nodenext"`** ([#14](https://github.com/meer-sagor/wavesurfer-vue/issues/14)): Type declarations failed to resolve in ESM projects that use Node's module resolution. TypeScript reported the composables as missing (`TS2305: Module '"@meersagor/wavesurfer-vue"' has no exported member 'useWaveSurfer'`) and silently typed `WaveSurferPlayer` as `any`.
+
+#### What was fixed:
+- Type declarations are now bundled into a single `dist/index.d.ts`. The old per-file output had extensionless relative imports (`'./core'`, `'./plugins'`) and a `.vue` import, which ESM resolution can't follow.
+- Added `dist/index.d.cts` so CommonJS (`require`) consumers get CommonJS-flavoured types.
+- `exports` now gives `import` and `require` their own `types` for `.`, `./core` and `./plugins`.
+- Added `typesVersions` so `@meersagor/wavesurfer-vue/core` and `/plugins` also resolve under the legacy `moduleResolution: "node"` (`node10`).
+- Fixed the misspelled `repository` and `bugs` URLs in `package.json`.
+
+#### Impact:
+Types now resolve correctly under every TypeScript module setting: `node10`, `node16`/`nodenext` (from both ESM and CJS) and `bundler`. Verified with TypeScript 5.9, 6.0 and 7.0, vue-tsc 3.3 and `@arethetypeswrong/cli` (no problems found). Runtime JavaScript is unchanged.
+
+> **Note:** The internal `dist/src/**` declaration files no longer exist. They were never part of the public `exports`, so imports through `@meersagor/wavesurfer-vue`, `/core` and `/plugins` are unaffected.
+
 ## 2.0.2
 
 ### 🐛 Bug Fixes
