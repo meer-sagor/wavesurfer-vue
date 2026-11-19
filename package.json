@@ -11,32 +11,57 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/meer-sagor/wavesufer-vue.git"
+    "url": "git+ssh://git@github.com/meer-sagor/wavesurfer-vue.git"
   },
   "bugs": {
-    "url": "https://github.com/meer-sagor/wavesufer-vue/issues"
+    "url": "https://github.com/meer-sagor/wavesurfer-vue/issues"
   },
   "homepage": "https://docs-wavesurfer.meersagor.com",
   "main": "./dist/@meersagor-wavesurfer-vue.cjs",
   "module": "./dist/@meersagor-wavesurfer-vue.js",
   "exports": {
     ".": {
-      "types": "./dist/src/index.d.ts",
-      "import": "./dist/@meersagor-wavesurfer-vue.js",
-      "require": "./dist/@meersagor-wavesurfer-vue.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/@meersagor-wavesurfer-vue.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/@meersagor-wavesurfer-vue.cjs"
+      }
     },
     "./core": {
-      "types": "./dist/src/core/index.d.ts",
-      "import": "./dist/@meersagor-wavesurfer-vue.js",
-      "require": "./dist/@meersagor-wavesurfer-vue.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/@meersagor-wavesurfer-vue.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/@meersagor-wavesurfer-vue.cjs"
+      }
     },
     "./plugins": {
-      "types": "./dist/src/plugins/index.d.ts",
-      "import": "./dist/@meersagor-wavesurfer-vue.js",
-      "require": "./dist/@meersagor-wavesurfer-vue.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/@meersagor-wavesurfer-vue.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/@meersagor-wavesurfer-vue.cjs"
+      }
     }
   },
-  "types": "./dist/src/index.d.ts",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "core": [
+        "./dist/index.d.ts"
+      ],
+      "plugins": [
+        "./dist/index.d.ts"
+      ]
+    }
+  },
   "publishConfig": {
     "access": "public"
   },
